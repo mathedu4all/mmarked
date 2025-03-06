@@ -1,3 +1,7 @@
+## [1.8.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.4...v1.8.5) (2025-03-06)
+
+
+
 ## [1.8.4](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.3...v1.8.4) (2024-12-19)
 
 
