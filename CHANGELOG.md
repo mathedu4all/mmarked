@@ -1,3 +1,12 @@
+## [1.8.6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.5...v1.8.6) (2025-03-27)
+
+
+### Bug Fixes
+
+* rollup config. ([806e7d5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/806e7d5e8f97d5ddb317e98ebdd0ca4817f6aa30))
+
+
+
 ## [1.8.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.4...v1.8.5) (2025-03-06)
 
 
