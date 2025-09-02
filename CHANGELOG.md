@@ -1,3 +1,13 @@
+## [1.8.7](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.6...v1.8.7) (2025-07-23)
+
+
+### Bug Fixes
+
+* [#18](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/18) footnotes in table bug fixed. ([ec0e561](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/ec0e5610224b27362dcf9c7fce2751c8b332bd49))
+* eslint timeout fixed. ([8d180e6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/8d180e6061809c71d5604053b6f1a02151e8e25e))
+
+
+
 ## [1.8.6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.5...v1.8.6) (2025-03-27)
 
 
