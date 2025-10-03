@@ -1,3 +1,12 @@
+# [2.0.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.8...v2.0.0) (2025-10-03)
+
+
+### Bug Fixes
+
+* **ci:** fix pipelines. ([707c69f](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/707c69f8553c7cce9c42c75a627eab9b3d87e074))
+
+
+
 ## [1.8.8](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.7...v1.8.8) (2025-09-10)
 
 
