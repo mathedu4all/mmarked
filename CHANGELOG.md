@@ -1,3 +1,13 @@
+## [2.0.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.2...v2.0.3) (2025-10-12)
+
+
+### Bug Fixes
+
+* **build:** preserve .gitignore in docs directory ([f9c1e79](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/f9c1e792c8d79311fa98c30eb6cb794cfaa870c6))
+* **ci:** remove build steps from GitHub release workflow ([d3d74c6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/d3d74c63706546c848d6a64f71dc4281cec76414))
+
+
+
 ## [2.0.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.1...v2.0.2) (2025-10-12)
 
 
