@@ -1,3 +1,12 @@
+## [2.0.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.1...v2.0.2) (2025-10-12)
+
+
+### Bug Fixes
+
+* fix demo missing demo.esm.js. ([5785ce0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/5785ce0270d9c2d1047e3e71bcb25ff9407352f2))
+
+
+
 ## [2.0.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.8...v2.0.1) (2025-10-04)
 
 
