@@ -1,110 +1,290 @@
 # mmarked
 
-[![npm version](https://badge.fury.io/js/%40mathcrowd%2Fmmarked.svg)](https://badge.fury.io/js/%40mathcrowd%2Fmmarked)
-[![License: Custom](https://img.shields.io/badge/License-Custom-yellow.svg)](https://creativecommons.org/licenses/by-nc/4.0)
+[![npm version](https://badge.fury.io/js/%40mathcrowd%2Fmmarked.svg)](https://www.npmjs.com/package/@mathcrowd/mmarked)
+[![npm downloads](https://img.shields.io/npm/dt/@mathcrowd/mmarked.svg)](https://www.npmjs.com/package/@mathcrowd/mmarked)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-yellow.svg)](https://creativecommons.org/licenses/by-nc/4.0)
 
 ![icon.png](./icon.png)
 
-[中文](./README.zh.md)
+[中文文档](./README.zh.md) | [Demo](https://mathedu4all.github.io/mmarked/) | [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=MCLab.mmarked) | [Logseq Plugin](https://github.com/mathedu4all/mmarked-logseq-extension)
 
-A powerful TypeScript library for rendering customized markdown syntax with LaTeX support, designed for mathematical visualization in educational contexts.
+## 📖 Overview
 
-## 🌟 Features
+Transform your Markdown experience with **mmarked** - a powerful TypeScript library designed for educational and mathematical content. Built for real-time rendering of complex LaTeX formulas, theorem blocks, and custom educational syntax.
 
-- ✅ **Full CommonMark syntax support:** Comprehensive compatibility with CommonMark standards
-- 🔢 **Footnotes Blocks:** Support for auto-numbered footnotes with easy reference links
-- 📘 **Theorem-like blocks:** Support for mathematical theorems, lemmas, and examples in a block format with titles, auto-numbering, and reference links
-- 🖼️ **Image resizing capabilities:** Customizable rendering of images and videos using simple syntax
-- 🔍 **Hidden/Show solution blocks:** Solution blocks with toggle buttons for easy visibility control, implemented with straightforward syntax
-- 🧮 **TeX to SVG conversion:** Conversion of TeX equations to scalable vector graphics for high-quality rendering
-- 🔗 **Easy Integration with Existing Systems:** Support for both server-side and browser-side implementations
+**Perfect for:**
+
+- 📚 **Educators** creating math course materials
+- 🎓 **Students** writing technical notes and assignments
+- 📝 **Researchers** authoring academic papers
+- 💻 **Developers** building educational platforms
+- 💡 **Anyone** working with mathematical notation in Markdown
+
+## ✨ Features
+
+### Core Capabilities
+
+- ✅ **Full CommonMark Support** - Complete compatibility with standard Markdown syntax
+- 🔗 **Easy Integration** - Works seamlessly in Node.js and browser environments
+- 📦 **Lightweight Core** - Minimal dependencies, extensible architecture
+- ⚡ **High Performance** - Optimized rendering pipeline for fast output
+
+### Mathematical Content
+
+- 🧮 **Advanced LaTeX Rendering** - Powered by MathJax for professional-quality formulas
+- 📐 **TeX to SVG Conversion** - High-quality SVG output for equations
+- 🔢 **Auto-Numbered Footnotes** - Easy-to-use reference system with automatic numbering
+
+### Educational Features
+
+- 📘 **Theorem-Like Blocks** - Dedicated syntax for theorems, lemmas, definitions, and examples
+  - Auto-numbering support
+  - Cross-reference linking with `[~id]` syntax
+  - Customizable titles
+- 🔍 **Collapsible Solution Blocks** - Hide/show answers and proofs with toggle functionality
+- 🎯 **Syntax Highlighting** - Code blocks enhanced by highlight.js
+
+### Media & Customization
+
+- 🖼️ **Enhanced Images** - Flexible sizing with simple `=WIDTHxHEIGHT` syntax
+- 📹 **Video Support** - Same sizing options for video elements
+- 🎨 **Extensible** - Built on marked.js for easy customization
 
 ## 🚀 Quick Start
 
-### Editor Integration
-
-Use mmarked in VSCode: https://marketplace.visualstudio.com/items?itemName=MCLab.mmarked  
-
-Use mmarked in Logseq: https://github.com/mathedu4all/mmarked-logseq-extension
-
-### Server-Side Integration
-
-#### Installation
+### Installation
 
 ```bash
 npm install @mathcrowd/mmarked mathjax-full highlight.js
 ```
 
-#### Basic Usage
+### Basic Usage
 
 ```typescript
-import { tex2svg, renderMarkdown } from '@mathcrowd/mmarked'
+import { renderMarkdown } from '@mathcrowd/mmarked'
 
-// Convert TeX to SVG
-const svg = tex2svg('$x^2$')
+// Render markdown with LaTeX support
+const result = renderMarkdown(`
+# Pythagorean Theorem
 
-// Render Markdown to HTML
-const html = renderMarkdown('### Heading').parsed
+\`\`\`[theorem,pythagoras,Pythagorean Theorem]
+For a right triangle with sides $a$, $b$ and hypotenuse $c$:
+$$a^2 + b^2 = c^2$$
+\`\`\`
+
+This fundamental theorem (see [~pythagoras]) relates the sides of right triangles.
+`)
+
+console.log(result.parsed) // HTML output
+console.log(result.time)   // Rendering time in ms
 ```
 
-### Browser-Side Integration
+### Browser Usage
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Marked in the browser</title>
+    <title>mmarked Demo</title>
 </head>
 <body>
     <div id="content"></div>
-    <script src="dist/browser.umd.js"></script>
-    <script>
-        const { tex2svg, renderMarkdown } = marked;
-        document.getElementById('content').innerHTML = 
-            tex2svg(renderMarkdown('# Marked in the browser \n\n $x^2+y^2=1$ \n\nRendered by **mmarked**.').parsed);
-        console.log(renderMarkdown('# Marked in the browser\n\nRendered by **mmarked**.').lexed);
+    <script type="module">
+        import { renderMarkdown } from 'https://cdn.jsdelivr.net/npm/@mathcrowd/mmarked/dist/index.mjs'
+
+        const markdown = `
+# Einstein's Mass-Energy Equivalence
+
+The famous equation $E = mc^2$ relates energy and mass.
+
+**Where:**
+- $E$ is energy
+- $m$ is mass
+- $c$ is the speed of light
+        `
+
+        document.getElementById('content').innerHTML = renderMarkdown(markdown).parsed
     </script>
 </body>
 </html>
 ```
 
-## 📚 API Reference
+## 📚 Extended Syntax Guide
 
-| Function | Description |
-|----------|-------------|
-| `tex2svg(tex: string): string` | Converts TeX to SVG in HTML format |
-| `renderMarkdown(markdown: string): {parsed: string, lexed: Token[], time: number}` | Renders Markdown to HTML |
-| `renderMarkdownCompact(markdown: string): {parsed: string, lexed: Token[], time: number}` | Renders Markdown to HTML without `<p>` tags |
+### Theorem Blocks with Auto-Numbering
 
-⚠️ **Important**: Always purify the output HTML using [DOMPurify](https://github.com/cure53/DOMPurify) to prevent XSS attacks.
+```markdown
+\`\`\`[theorem,fermat,Fermat's Last Theorem]
+No three positive integers $a$, $b$, and $c$ satisfy the equation
+$a^n + b^n = c^n$ for any integer value of $n > 2$.
+\`\`\`
 
-## 📖 Documentation
+\`\`\`[lemma,helper,Helper Lemma]
+This lemma supports the proof of [~fermat].
+\`\`\`
+```
 
-For detailed documentation in Chinese, visit our [Product Page](https://lab.mathcrowd.cn/mmarked).
+**Supported block types:** `theorem`, `lemma`, `corollary`, `axiom`, `definition`, `example`
 
-## 🎮 Demo
+**Custom blocks:** Use any keyword for custom theorem-like blocks with independent numbering.
 
-Try out our interactive demo [here](https://mathedu4all.github.io/mmarked/).
+**Hide numbering:** Add `*` after the keyword (e.g., `theorem*`) to hide the number while maintaining sequence.
 
-## 👥 About Mathcrowd
+### Interactive Solution Blocks
 
-Mathcrowd is an innovative startup founded by experienced independent developers and mathematics educators. We're on a mission to revolutionize math education in China through cutting-edge technology. Our goal is to create an engaging online community for math enthusiasts and self-learners, offering rich, interactive, and visualized learning content.
+```markdown
+**Problem:** Solve the quadratic equation $x^2 - 5x + 6 = 0$
 
-🌐 MCLab Official Website: [https://lab.mathcrowd.cn](https://lab.mathcrowd.cn)  
-🌐 Our Online Math Community: [https://www.mathcrowd.cn](https://www.mathcrowd.cn)  
-💬 Join Our Discord: [https://discord.gg/6VMUVA5Yq2](https://discord.gg/6VMUVA5Yq2)
+~~~[solution]
+**Solution:**
+
+Factoring the equation:
+$$(x-2)(x-3) = 0$$
+
+Therefore, the solutions are:
+- $x = 2$
+- $x = 3$
+~~~
+
+~~~[proof]
+**Verification:** Substituting $x=2$: $(2)^2 - 5(2) + 6 = 4 - 10 + 6 = 0$ ✓
+~~~
+```
+
+### Enhanced Images and Videos
+
+```markdown
+![Logo](https://example.com/logo.svg "Company Logo =300x100")
+
+![Screenshot](./images/demo.png "Demo Screenshot =800x600")
+```
+
+### Auto-Numbered Footnotes
+
+```markdown
+The Riemann Hypothesis[^riemann] is one of the most important unsolved problems.
+
+Another famous conjecture is the Twin Prime Conjecture[^twin].
+
+[^riemann]: Proposed by Bernhard Riemann in 1859.
+[^twin]: States that there are infinitely many twin primes.
+```
+
+## 🔧 API Reference
+
+### Core Functions
+
+#### `renderMarkdown(markdown: string)`
+
+Renders Markdown to HTML with full feature support.
+
+**Returns:**
+```typescript
+{
+  parsed: string,  // HTML output
+  lexed: Token[],  // Marked.js tokens
+  time: number     // Rendering time in milliseconds
+}
+```
+
+**Example:**
+```typescript
+const { parsed, time } = renderMarkdown('# Hello $x^2$')
+console.log(`Rendered in ${time}ms`)
+```
+
+#### `renderMarkdownCompact(markdown: string)`
+
+Renders Markdown without wrapping `<p>` tags, ideal for inline content.
+
+**Returns:** Same structure as `renderMarkdown()`
+
+**Use case:** Rendering single-line content without block-level elements.
+
+```typescript
+const { parsed } = renderMarkdownCompact('**Bold** and $x^2$ inline')
+// Output: <strong>Bold</strong> and <svg>...</svg> inline
+```
+
+#### `tex2svg(html: string): string`
+
+Converts LaTeX expressions to SVG within HTML content.
+
+**Parameters:**
+- `html`: HTML string containing LaTeX expressions (`$...$` for inline, `$$...$$` for block)
+
+**Returns:** HTML with LaTeX converted to SVG graphics
+
+**Example:**
+```typescript
+const html = '<p>Einstein: $E=mc^2$</p>'
+const withSvg = tex2svg(html)
+```
+
+### ⚠️ Security Warning
+
+**Always sanitize HTML output** using [DOMPurify](https://github.com/cure53/DOMPurify) before inserting into the DOM:
+
+```typescript
+import DOMPurify from 'dompurify'
+import { renderMarkdown } from '@mathcrowd/mmarked'
+
+// Safe rendering of user input
+const userMarkdown = getUserInput()
+const { parsed } = renderMarkdown(userMarkdown)
+const safeHtml = DOMPurify.sanitize(parsed)
+
+document.getElementById('content').innerHTML = safeHtml
+```
+
+## 🔌 Editor Integrations
+
+Enhance your editing experience with official integrations:
+
+- **[VSCode Extension](https://marketplace.visualstudio.com/items?itemName=MCLab.mmarked)** - Real-time preview with theme support
+- **[Logseq Plugin](https://github.com/mathedu4all/mmarked-logseq-extension)** - Seamless integration for note-taking
+
+## 📖 Documentation & Resources
+
+- 🏠 **[Product Homepage](https://lab.mathcrowd.cn/mmarked)** - Official product page
+- 📘 **[Complete Documentation](https://lab.mathcrowd.cn/mmarked/docs)** - Full syntax guide (Chinese)
+- 🎮 **[Interactive Demo](https://mathedu4all.github.io/mmarked/)** - Try it live with quick reference built-in
+
+## 🏗️ Built With
+
+- **[marked.js](https://marked.js.org/)** - Fast Markdown parser
+- **[MathJax](https://www.mathjax.org/)** - Beautiful math rendering
+- **[highlight.js](https://highlightjs.org/)** - Syntax highlighting
+
+## 🏢 About Mathcrowd
+
+**Mathcrowd** is revolutionizing mathematics education in China through innovative technology. Founded by experienced developers and math educators, we're building tools and communities that make math learning more accessible and engaging.
+
+- 🌐 **MCLab Platform:** [lab.mathcrowd.cn](https://lab.mathcrowd.cn)
+- 👥 **Math Community:** [mathcrowd.cn](https://www.mathcrowd.cn)
+- 💬 **Join Discord:** [discord.gg/6VMUVA5Yq2](https://discord.gg/6VMUVA5Yq2)
 
 ## 📄 License
 
-See [LICENSE](./LICENSE.md)
+Licensed under [CC BY-NC 4.0](./LICENSE.md) - Free for non-commercial use.
 
-For commercial use, please contact charles@mathcrowd.cn for licensing details.
+For commercial licensing, contact: **charles@mathcrowd.cn**
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more details.
+We welcome contributions! Check our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-## 📞 Support
+## 💬 Support
 
-For questions or issues, please [open an issue](https://github.com/mathedu4all/mathcrowd-marked-lib/issues) on our GitHub repository.
+- 🐛 **Bug Reports:** [GitHub Issues](https://github.com/mathedu4all/mmarked/issues)
+- 💡 **Feature Requests:** [GitHub Discussions](https://github.com/mathedu4all/mmarked/discussions)
+- 📧 **Email:** support@mathcrowd.cn
+
+---
+
+<div align="center">
+
+Made with ❤️ by the [Mathcrowd](https://mathcrowd.cn) team
+
+</div>
