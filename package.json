@@ -1,6 +1,6 @@
 {
   "name": "@mathcrowd/mmarked",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "A customized markdown parser/renderer with tex2svg.",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
@@ -22,7 +22,8 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "docs": "node demo/build.js",
-    "build": "npm run clean && npm run types && rollup -c ",
+    "build": "npm run clean && npm run types && OBFUSCATE=true rollup -c",
+    "build:dev": "npm run clean && npm run types && rollup -c",
     "demo": "npm run clean && rollup -c rollup.config.demo.mjs --watch",
     "test": "jest --passWithNoTests",
     "changelog": "git fetch && npx conventional-changelog -p angular -i CHANGELOG.md -s --release-count 0 && git add package.json CHANGELOG.md && git commit -m 'chore: package.json / CHANGELOG updated.'"
@@ -38,6 +39,9 @@
   ],
   "author": "Charles Bao",
   "license": "CC BY-NC 4.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-typescript": "^7.27.1",
@@ -61,6 +65,7 @@
     "eslint-plugin-regexp": "^2.10.0",
     "globals": "^16.4.0",
     "highlight.js": "^11.11.1",
+    "javascript-obfuscator": "^4.1.1",
     "jest": "^30.2.0",
     "js-md5": "^0.8.3",
     "marked": "^16.3.0",
@@ -70,6 +75,7 @@
     "rollup": "^4.52.4",
     "rollup-plugin-dts": "^6.2.3",
     "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-obfuscator": "^1.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-serve": "^3.0.0",
     "rollup-plugin-visualizer": "^6.0.4",

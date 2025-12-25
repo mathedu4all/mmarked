@@ -1,3 +1,18 @@
+# [3.0.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.3...v3.0.0) (2025-12-25)
+
+
+### Bug Fixes
+
+* **ci:** add contents write permission to release workflow ([9f4d3cc](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/9f4d3cc60d410a93f015796f3e6023f7098b982f))
+* **ci:** remove tags-only restriction from github sync job ([5e54dd2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/5e54dd2114cc67eab5d6bc019ad161052dbc1484))
+
+
+### Features
+
+* add Node.js-only license validation with browser exemption ([acb4f1a](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/acb4f1a5c75f4fe5ebb4434dbbdc970664a2f048))
+
+
+
 ## [2.0.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.2...v2.0.3) (2025-10-12)
 
 

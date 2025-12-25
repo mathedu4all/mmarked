@@ -79,6 +79,44 @@ console.log(result.parsed) // HTML 输出
 console.log(result.time)   // 渲染耗时（毫秒）
 ```
 
+### 许可证配置（仅 Node.js）
+
+**重要提示：** 许可证验证**仅适用于 Node.js 服务端使用**。浏览器环境不需要配置许可证。
+
+在 Node.js 应用中商业使用时，必须配置有效的许可证：
+
+```typescript
+import { configureLicense, renderMarkdown } from '@mathcrowd/mmarked'
+
+// 配置你的许可证（在应用启动时执行一次）
+configureLicense({
+  apiKey: 'MMARKED-XXXX-XXXX-XXXX-XXXX'
+})
+
+// 现在可以使用库了
+const result = renderMarkdown('# Hello World')
+```
+
+**在 Node.js 中未配置许可证：**
+```typescript
+import { renderMarkdown } from '@mathcrowd/mmarked'
+
+// 可以正常工作，但会在控制台显示警告
+const result = renderMarkdown('# Hello')
+// 控制台输出：
+// ⚠️  未配置 Node.js 服务端有效许可证。
+// 商业使用请通过 configureLicense() 配置许可证。
+// 联系 charles@mathcrowd.cn 获取商业许可。
+// 浏览器使用无需许可证。
+```
+
+**系统要求：**
+- **Node.js 18+** 用于远程许可证验证（使用 fetch API）
+
+**获取许可证：**
+- 📧 邮箱：**charles@mathcrowd.cn**
+- 🌐 访问：[lab.mathcrowd.cn](https://lab.mathcrowd.cn)
+
 ### 浏览器端使用
 
 ```html
@@ -173,11 +211,34 @@ $$(x-2)(x-3) = 0$$
 
 ## 🔧 API 参考
 
+### 许可证管理（仅 Node.js）
+
+#### `configureLicense(config: LicenseConfig)`
+
+为 Node.js 环境中的商业使用配置许可证。必须在使用渲染函数之前调用。
+
+**参数：**
+```typescript
+interface LicenseConfig {
+  apiKey: string  // 你的许可证密钥（格式：MMARKED-XXXX-XXXX-XXXX-XXXX）
+}
+```
+
+**示例：**
+```typescript
+// 最简配置（推荐）
+configureLicense({
+  apiKey: 'MMARKED-XXXX-XXXX-XXXX-XXXX'
+})
+```
+
 ### 核心函数
 
 #### `renderMarkdown(markdown: string)`
 
 将 Markdown 渲染为 HTML，支持所有功能。
+
+**许可证：** Node.js 商业使用需要有效许可证。浏览器免费使用。
 
 **返回值：**
 ```typescript
@@ -197,6 +258,8 @@ console.log(`渲染耗时 ${time}ms`)
 #### `renderMarkdownCompact(markdown: string)`
 
 渲染 Markdown 但不包裹 `<p>` 标签，适合行内内容。
+
+**许可证：** Node.js 商业使用需要有效许可证。浏览器免费使用。
 
 **返回值：** 与 `renderMarkdown()` 相同的结构
 
@@ -247,8 +310,8 @@ document.getElementById('content').innerHTML = safeHtml
 
 ## 📖 文档与资源
 
-- 🏠 **[产品主页](https://lab.mathcrowd.cn/mmarked)** - 官方产品页面
-- 📘 **[完整文档](https://lab.mathcrowd.cn/mmarked/docs)** - 完整语法指南
+- 🏠 **[产品主页](https://lab.mathcrowd.cn/products/mmarked)** - 官方产品页面
+- 📘 **[完整文档](https://lab.mathcrowd.cn/docs/mmarked)** - 完整语法指南
 - 🎮 **[在线演示](https://mathedu4all.github.io/mmarked/)** - 在浏览器中实时体验，内置快速参考
 
 ## 🏗️ 技术栈
@@ -261,8 +324,7 @@ document.getElementById('content').innerHTML = safeHtml
 
 **橘子数学（Mathcrowd）** 致力于通过创新技术革新中国的数学教育。我们由经验丰富的开发者和数学教育工作者创立，正在构建工具和社区，让数学学习更易获取、更有吸引力。
 
-- 🌐 **MCLab 平台：** [lab.mathcrowd.cn](https://lab.mathcrowd.cn)
-- 👥 **数学社区：** [mathcrowd.cn](https://www.mathcrowd.cn)
+- 🌐 **Mathcrowd Labs:** [lab.mathcrowd.cn](https://lab.mathcrowd.cn)
 - 💬 **加入 Discord：** [discord.gg/6VMUVA5Yq2](https://discord.gg/6VMUVA5Yq2)
 
 ## 📄 许可证
@@ -271,15 +333,9 @@ document.getElementById('content').innerHTML = safeHtml
 
 商业许可请联系：**charles@mathcrowd.cn**
 
-## 🤝 贡献
-
-欢迎贡献！查看我们的[贡献指南](CONTRIBUTING.md)了解详情。
-
 ## 💬 支持
 
 - 🐛 **错误报告：** [GitHub Issues](https://github.com/mathedu4all/mmarked/issues)
-- 💡 **功能建议：** [GitHub Discussions](https://github.com/mathedu4all/mmarked/discussions)
-- 📧 **邮箱：** support@mathcrowd.cn
 
 ---
 

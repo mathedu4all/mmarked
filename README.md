@@ -79,6 +79,44 @@ console.log(result.parsed) // HTML output
 console.log(result.time)   // Rendering time in ms
 ```
 
+### License Configuration (Node.js Only)
+
+**Important:** License validation is **only required for Node.js server-side usage**. Browser environments do not require license configuration.
+
+For commercial use in Node.js applications, you must configure a valid license:
+
+```typescript
+import { configureLicense, renderMarkdown } from '@mathcrowd/mmarked'
+
+// Configure your license (do this once at application startup)
+configureLicense({
+  apiKey: 'MMARKED-XXXX-XXXX-XXXX-XXXX'
+})
+
+// Now you can use the library
+const result = renderMarkdown('# Hello World')
+```
+
+**Without license configuration in Node.js:**
+```typescript
+import { renderMarkdown } from '@mathcrowd/mmarked'
+
+// This will work but show a warning in console
+const result = renderMarkdown('# Hello')
+// Console output:
+// ⚠️  No valid license configured for Node.js server-side usage.
+// For commercial use, please configure a license using configureLicense().
+// Contact charles@mathcrowd.cn for commercial licensing.
+// Browser usage does not require a license.
+```
+
+**Requirements:**
+- **Node.js 18+** for remote license validation (uses fetch API)
+
+**Get Your License:**
+- 📧 Email: **charles@mathcrowd.cn**
+- 🌐 Visit: [lab.mathcrowd.cn](https://lab.mathcrowd.cn)
+
 ### Browser Usage
 
 ```html
@@ -173,11 +211,34 @@ Another famous conjecture is the Twin Prime Conjecture[^twin].
 
 ## 🔧 API Reference
 
+### License Management (Node.js Only)
+
+#### `configureLicense(config: LicenseConfig)`
+
+Configure license for commercial use in Node.js environments. Must be called before using render functions.
+
+**Parameters:**
+```typescript
+interface LicenseConfig {
+  apiKey: string  // Your license key (format: MMARKED-XXXX-XXXX-XXXX-XXXX)
+}
+```
+
+**Example:**
+```typescript
+// Minimal configuration (recommended)
+configureLicense({
+  apiKey: 'MMARKED-XXXX-XXXX-XXXX-XXXX'
+})
+```
+
 ### Core Functions
 
 #### `renderMarkdown(markdown: string)`
 
 Renders Markdown to HTML with full feature support.
+
+**License:** Requires valid license for commercial use in Node.js. Free in browsers.
 
 **Returns:**
 ```typescript
@@ -197,6 +258,8 @@ console.log(`Rendered in ${time}ms`)
 #### `renderMarkdownCompact(markdown: string)`
 
 Renders Markdown without wrapping `<p>` tags, ideal for inline content.
+
+**License:** Requires valid license for commercial use in Node.js. Free in browsers.
 
 **Returns:** Same structure as `renderMarkdown()`
 
@@ -247,8 +310,8 @@ Enhance your editing experience with official integrations:
 
 ## 📖 Documentation & Resources
 
-- 🏠 **[Product Homepage](https://lab.mathcrowd.cn/mmarked)** - Official product page
-- 📘 **[Complete Documentation](https://lab.mathcrowd.cn/mmarked/docs)** - Full syntax guide (Chinese)
+- 🏠 **[Product Homepage](https://lab.mathcrowd.cn/products/mmarked)** - Official product page
+- 📘 **[Complete Documentation](https://lab.mathcrowd.cn/docs/mmarked)** - Full syntax guide (Chinese)
 - 🎮 **[Interactive Demo](https://mathedu4all.github.io/mmarked/)** - Try it live with quick reference built-in
 
 ## 🏗️ Built With
@@ -261,8 +324,7 @@ Enhance your editing experience with official integrations:
 
 **Mathcrowd** is revolutionizing mathematics education in China through innovative technology. Founded by experienced developers and math educators, we're building tools and communities that make math learning more accessible and engaging.
 
-- 🌐 **MCLab Platform:** [lab.mathcrowd.cn](https://lab.mathcrowd.cn)
-- 👥 **Math Community:** [mathcrowd.cn](https://www.mathcrowd.cn)
+- 🌐 **Mathcrowd Labs:** [lab.mathcrowd.cn](https://lab.mathcrowd.cn)
 - 💬 **Join Discord:** [discord.gg/6VMUVA5Yq2](https://discord.gg/6VMUVA5Yq2)
 
 ## 📄 License
@@ -271,15 +333,9 @@ Licensed under [CC BY-NC 4.0](./LICENSE.md) - Free for non-commercial use.
 
 For commercial licensing, contact: **charles@mathcrowd.cn**
 
-## 🤝 Contributing
-
-We welcome contributions! Check our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
 ## 💬 Support
 
-- 🐛 **Bug Reports:** [GitHub Issues](https://github.com/mathedu4all/mmarked/issues)
 - 💡 **Feature Requests:** [GitHub Discussions](https://github.com/mathedu4all/mmarked/discussions)
-- 📧 **Email:** support@mathcrowd.cn
 
 ---
 
