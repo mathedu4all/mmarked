@@ -1,15 +1,25 @@
+## [3.0.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.0.0...v3.0.1) (2025-12-26)
+
+
+### Features
+
+* **license:** add validation caching to improve performance ([220d21b](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/220d21b3937210752930c236b29731f13163190b))
+
+
+
 # [3.0.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.3...v3.0.0) (2025-12-25)
 
 
 ### Bug Fixes
 
+* **build:** correct TypeScript declaration file bundling path ([cf98c84](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/cf98c84ffb811bda6de14b233664374ecfc08aba))
 * **ci:** add contents write permission to release workflow ([9f4d3cc](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/9f4d3cc60d410a93f015796f3e6023f7098b982f))
 * **ci:** remove tags-only restriction from github sync job ([5e54dd2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/5e54dd2114cc67eab5d6bc019ad161052dbc1484))
 
 
 ### Features
 
-* add Node.js-only license validation with browser exemption ([acb4f1a](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/acb4f1a5c75f4fe5ebb4434dbbdc970664a2f048))
+* add Node.js-only license validation with browser exemption ([e767164](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/e767164129faedb29f32af9bd9aafa1da5c559a3))
 
 
 
