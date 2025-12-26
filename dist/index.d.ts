@@ -27,6 +27,7 @@ declare const renderMarkdown: (text: string) => {
 
 /**
  * convert TeX to SVG in HTML.
+ * 使用预配置的单例实例，提升性能并保持配置一致性
  */
 declare const tex2svg: (html: string) => string;
 

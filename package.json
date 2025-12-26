@@ -1,6 +1,6 @@
 {
   "name": "@mathcrowd/mmarked",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "A customized markdown parser/renderer with tex2svg.",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
