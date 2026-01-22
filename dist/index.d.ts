@@ -71,6 +71,10 @@ interface UsageStats {
     sessionId?: string;
 }
 /**
+ * Stop usage tracking timer (for testing cleanup)
+ */
+declare function stopUsageTracking(): void;
+/**
  * Track function call (internal use)
  */
 declare function trackFunctionCall(functionName: 'renderMarkdown' | 'renderMarkdownCompact'): void;
@@ -107,5 +111,5 @@ declare function clearValidationCache(): void;
  */
 declare function resetUsageStats(): void;
 
-export { UNLICENSED_WARNING_INTERVAL, clearValidationCache, configureLicense, getLicenseConfig, getWarningIfNeeded, isLicensed, renderMarkdown, renderMarkdownCompact, resetUsageStats, setUnlicensedWarningInterval, tex2svg, trackFunctionCall, validateLicense };
+export { UNLICENSED_WARNING_INTERVAL, clearValidationCache, configureLicense, getLicenseConfig, getWarningIfNeeded, isLicensed, renderMarkdown, renderMarkdownCompact, resetUsageStats, setUnlicensedWarningInterval, stopUsageTracking, tex2svg, trackFunctionCall, validateLicense };
 export type { LicenseConfig, LicenseValidationResult, UsageStats };

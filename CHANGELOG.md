@@ -1,3 +1,22 @@
+## [3.1.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.0...v3.1.1) (2026-01-22)
+
+
+### Bug Fixes
+
+* **test:** 修复 Jest 测试无法正常退出的问题 ([922d5ec](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/922d5ecf32e710ecaa8063e8769dada613d0fee5))
+* 修复 MathJax 内存泄漏问题 ([e7ad29d](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/e7ad29df760f69d0ebe6e1f312c1812d3fbbb856))
+
+
+
+# [3.1.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.0.1...v3.1.0) (2025-12-26)
+
+
+### Performance Improvements
+
+* optimize performance with singleton pattern and auto license config ([8a1f46c](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/8a1f46c69a75205f9498f3674df96bbbd4905d0d))
+
+
+
 ## [3.0.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.0.0...v3.0.1) (2025-12-26)
 
 
