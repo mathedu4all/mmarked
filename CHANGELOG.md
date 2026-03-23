@@ -1,3 +1,12 @@
+## [3.1.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.1...v3.1.2) (2026-03-23)
+
+
+### Features
+
+* **tooltip:** 重构 tooltip 扩展，图片链接改为可选项 ([fc33c0b](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/fc33c0bb1bccfdb0948b0806f9431b89e5b9aecf))
+
+
+
 ## [3.1.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.0...v3.1.1) (2026-01-22)
 
 
