@@ -1,3 +1,18 @@
+## [3.1.4](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.3...v3.1.4) (2026-04-10)
+
+
+### Bug Fixes
+
+* exclude .map files from npm package ([69a9436](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/69a9436b8742972cd10a8f9314092590b3fdddb8))
+* prevent trigger-update race condition by fetching existing update-dependencies branch ([e3f0826](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/e3f0826f7a03e7ac2bc5af0a6e370beebb1a7f6f))
+* rebase update-dependencies branch on main before updating ([a6709bb](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/a6709bbbd90362b6e8be302edf48aefcd4a359e5))
+* upgrade trigger-update to semver-aware strategy and add release script ([3c0a5b2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/3c0a5b257c354969040f5e07b995195a77d2ec07))
+
+
+### Features
+
+* add i18n locale support for built-in labels (zh/en) ([4bb0bf9](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/4bb0bf99f647ced1e6340a9c7ba672df412a0d2f))
+
 ## [3.1.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.2...v3.1.3) (2026-03-27)
 
 ## [3.1.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.1...v3.1.2) (2026-03-23)

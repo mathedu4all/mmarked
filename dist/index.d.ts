@@ -14,12 +14,19 @@ declare const renderMarkdownCompact: (text: string) => {
 };
 
 /**
+ * Locale support for built-in type names (theorem, proof, etc.)
+ */
+type Locale = 'zh' | 'en';
+
+/**
  * Parse Markdown to HTML.
  * Requires a valid license for commercial use in Node.js environment.
  * Call configureLicense() before using this function in server-side code.
  * Browser usage does not require license configuration.
  */
-declare const renderMarkdown: (text: string) => {
+declare const renderMarkdown: (text: string, options?: {
+    locale?: Locale;
+}) => {
     parsed: string;
     lexed: Tokens.Generic[];
     time: number;
@@ -112,4 +119,4 @@ declare function clearValidationCache(): void;
 declare function resetUsageStats(): void;
 
 export { UNLICENSED_WARNING_INTERVAL, clearValidationCache, configureLicense, getLicenseConfig, getWarningIfNeeded, isLicensed, renderMarkdown, renderMarkdownCompact, resetUsageStats, setUnlicensedWarningInterval, stopUsageTracking, tex2svg, trackFunctionCall, validateLicense };
-export type { LicenseConfig, LicenseValidationResult, UsageStats };
+export type { LicenseConfig, LicenseValidationResult, Locale, UsageStats };

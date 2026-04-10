@@ -25,6 +25,7 @@ Transform your Markdown experience with **mmarked** - a powerful TypeScript libr
 ### Core Capabilities
 
 - ✅ **Full CommonMark Support** - Complete compatibility with standard Markdown syntax
+- 🌐 **I18n Support** - Built-in Chinese/English locale for theorem, proof, footnote labels
 - 🔗 **Easy Integration** - Works seamlessly in Node.js and browser environments
 - 📦 **Lightweight Core** - Minimal dependencies, extensible architecture
 - ⚡ **High Performance** - Optimized rendering pipeline for fast output
@@ -77,6 +78,10 @@ This fundamental theorem (see [~pythagoras]) relates the sides of right triangle
 
 console.log(result.parsed) // HTML output
 console.log(result.time)   // Rendering time in ms
+
+// Render with English locale
+const enResult = renderMarkdown(`...`, { locale: 'en' })
+// Theorem → "Theorem", Proof → "Proof", Footnotes → "Footnotes"
 ```
 
 ### License Configuration (Node.js Only)
@@ -234,11 +239,15 @@ configureLicense({
 
 ### Core Functions
 
-#### `renderMarkdown(markdown: string)`
+#### `renderMarkdown(markdown: string, options?: { locale?: Locale })`
 
 Renders Markdown to HTML with full feature support.
 
 **License:** Requires valid license for commercial use in Node.js. Free in browsers.
+
+**Parameters:**
+- `markdown`: Markdown source string
+- `options.locale`: `'zh'` (default) or `'en'` — controls built-in labels for theorem-like blocks, solution/proof blocks, and footnote headings
 
 **Returns:**
 ```typescript
@@ -249,10 +258,27 @@ Renders Markdown to HTML with full feature support.
 }
 ```
 
+**Locale mapping:**
+
+| Keyword | `zh` (default) | `en` |
+|---------|---------------|------|
+| `theorem` | 定理 | Theorem |
+| `lemma` | 引理 | Lemma |
+| `corollary` | 推论 | Corollary |
+| `axiom` | 公理 | Axiom |
+| `definition` | 定义 | Definition |
+| `example` | 例 | Example |
+| `proof` | 证明 | Proof |
+| `solution` | 解答 | Solution |
+| Footnote heading | 脚注 | Footnotes |
+
 **Example:**
 ```typescript
 const { parsed, time } = renderMarkdown('# Hello $x^2$')
 console.log(`Rendered in ${time}ms`)
+
+// English locale
+const { parsed: enHtml } = renderMarkdown(md, { locale: 'en' })
 ```
 
 #### `renderMarkdownCompact(markdown: string)`

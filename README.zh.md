@@ -25,6 +25,7 @@
 ### 核心能力
 
 - ✅ **完整 CommonMark 支持** - 与标准 Markdown 语法完全兼容
+- 🌐 **多语言支持** - 内置中英文 locale，定理、证明、脚注等标签自动切换
 - 🔗 **轻松集成** - 在 Node.js 和浏览器环境中无缝运行
 - 📦 **轻量核心** - 最少依赖，可扩展架构
 - ⚡ **高性能** - 优化的渲染管道，输出快速
@@ -77,6 +78,10 @@ $$a^2 + b^2 = c^2$$
 
 console.log(result.parsed) // HTML 输出
 console.log(result.time)   // 渲染耗时（毫秒）
+
+// 使用英文 locale 渲染
+const enResult = renderMarkdown(`...`, { locale: 'en' })
+// 定理 → "Theorem"，证明 → "Proof"，脚注 → "Footnotes"
 ```
 
 ### 许可证配置（仅 Node.js）
@@ -234,11 +239,15 @@ configureLicense({
 
 ### 核心函数
 
-#### `renderMarkdown(markdown: string)`
+#### `renderMarkdown(markdown: string, options?: { locale?: Locale })`
 
 将 Markdown 渲染为 HTML，支持所有功能。
 
 **许可证：** Node.js 商业使用需要有效许可证。浏览器免费使用。
+
+**参数：**
+- `markdown`：Markdown 源字符串
+- `options.locale`：`'zh'`（默认）或 `'en'` —— 控制定理类块、证明/解答块、脚注标题的内置标签语言
 
 **返回值：**
 ```typescript
@@ -249,10 +258,27 @@ configureLicense({
 }
 ```
 
+**Locale 对照表：**
+
+| 关键字 | `zh`（默认） | `en` |
+|--------|-------------|------|
+| `theorem` | 定理 | Theorem |
+| `lemma` | 引理 | Lemma |
+| `corollary` | 推论 | Corollary |
+| `axiom` | 公理 | Axiom |
+| `definition` | 定义 | Definition |
+| `example` | 例 | Example |
+| `proof` | 证明 | Proof |
+| `solution` | 解答 | Solution |
+| 脚注标题 | 脚注 | Footnotes |
+
 **示例：**
 ```typescript
 const { parsed, time } = renderMarkdown('# 你好 $x^2$')
 console.log(`渲染耗时 ${time}ms`)
+
+// 英文 locale
+const { parsed: enHtml } = renderMarkdown(md, { locale: 'en' })
 ```
 
 #### `renderMarkdownCompact(markdown: string)`
