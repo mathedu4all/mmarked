@@ -32,11 +32,17 @@ declare const renderMarkdown: (text: string, options?: {
     time: number;
 };
 
+interface Tex2SvgOptions {
+    /** Add <title> element with TeX source inside each SVG for SEO */
+    title?: boolean;
+    /** Add aria-label attribute with TeX source to each SVG element for accessibility */
+    aria?: boolean;
+}
 /**
  * convert TeX to SVG in HTML.
  * 使用预配置的单例实例，提升性能并保持配置一致性
  */
-declare const tex2svg: (html: string) => string;
+declare const tex2svg: (html: string, options?: Tex2SvgOptions) => string;
 
 /**
  * How often to inject warning for unlicensed usage (default: 1000)

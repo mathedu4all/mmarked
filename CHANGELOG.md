@@ -1,3 +1,10 @@
+## [3.1.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.4...v3.1.5) (2026-04-29)
+
+
+### Features
+
+* add title/aria options to tex2svg for SEO and accessibility ([ec00910](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/ec00910bec13a886b90a7b24057c30a1845bc4e6))
+
 ## [3.1.4](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.3...v3.1.4) (2026-04-10)
 
 
@@ -14,8 +21,6 @@
 * add i18n locale support for built-in labels (zh/en) ([4bb0bf9](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/4bb0bf99f647ced1e6340a9c7ba672df412a0d2f))
 
 ## [3.1.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.2...v3.1.3) (2026-03-27)
-
-## [3.1.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.1...v3.1.2) (2026-03-23)
 
 
 ### Features

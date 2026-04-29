@@ -296,19 +296,28 @@ const { parsed } = renderMarkdownCompact('**粗体** 和 $x^2$ 行内')
 // 输出: <strong>粗体</strong> 和 <svg>...</svg> 行内
 ```
 
-#### `tex2svg(html: string): string`
+#### `tex2svg(html: string, options?: Tex2SvgOptions): string`
 
 将 HTML 中的 LaTeX 表达式转换为 SVG。
 
 **参数：**
 - `html`: 包含 LaTeX 表达式的 HTML 字符串（`$...$` 表示行内，`$$...$$` 表示块）
+- `options` *（可选）*：无障碍访问与 SEO 选项
+  - `title?: boolean` — 在每个 SVG 内部注入 `<title>` 元素，内容为原始 TeX 源码（提升 SEO 可读性）
+  - `aria?: boolean` — 在每个 SVG 元素上添加 `aria-label` 属性，内容为原始 TeX 源码（改善屏幕阅读器体验）
 
 **返回值：** LaTeX 转换为 SVG 图形后的 HTML
 
 **示例：**
 ```typescript
 const html = '<p>爱因斯坦：$E=mc^2$</p>'
+
+// 基础用法
 const withSvg = tex2svg(html)
+
+// 启用 SEO 和无障碍支持
+const withA11y = tex2svg(html, { title: true, aria: true })
+// SVG 输出：<svg aria-label="$E=mc^2$" ...><title>$E=mc^2$</title>...</svg>
 ```
 
 ### ⚠️ 安全警告

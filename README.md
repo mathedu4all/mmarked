@@ -296,19 +296,28 @@ const { parsed } = renderMarkdownCompact('**Bold** and $x^2$ inline')
 // Output: <strong>Bold</strong> and <svg>...</svg> inline
 ```
 
-#### `tex2svg(html: string): string`
+#### `tex2svg(html: string, options?: Tex2SvgOptions): string`
 
 Converts LaTeX expressions to SVG within HTML content.
 
 **Parameters:**
 - `html`: HTML string containing LaTeX expressions (`$...$` for inline, `$$...$$` for block)
+- `options` *(optional)*: Accessibility and SEO options
+  - `title?: boolean` — Inject `<title>` element with the TeX source inside each SVG (improves SEO crawlability)
+  - `aria?: boolean` — Add `aria-label` attribute with the TeX source to each SVG element (improves screen reader accessibility)
 
 **Returns:** HTML with LaTeX converted to SVG graphics
 
 **Example:**
 ```typescript
 const html = '<p>Einstein: $E=mc^2$</p>'
+
+// Basic usage
 const withSvg = tex2svg(html)
+
+// With SEO and accessibility support
+const withA11y = tex2svg(html, { title: true, aria: true })
+// SVG output: <svg aria-label="$E=mc^2$" ...><title>$E=mc^2$</title>...</svg>
 ```
 
 ### ⚠️ Security Warning
