@@ -1,3 +1,10 @@
+## [3.1.6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.5...v3.1.6) (2026-04-29)
+
+
+### Features
+
+* add agent skills for project automation ([1f0d8a0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/1f0d8a0f9e0a08e687f0c3b9f3b8bf6ab1121f9b))
+
 ## [3.1.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.4...v3.1.5) (2026-04-29)
 
 
