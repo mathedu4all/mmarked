@@ -44,15 +44,6 @@ interface Tex2SvgOptions {
  */
 declare const tex2svg: (html: string, options?: Tex2SvgOptions) => string;
 
-/**
- * How often to inject warning for unlicensed usage (default: 1000)
- * Can be changed in tests或调试
- */
-declare let UNLICENSED_WARNING_INTERVAL: number;
-/**
- * Set the interval for unlicensed warning injection (for testing/debugging)
- */
-declare function setUnlicensedWarningInterval(interval: number): void;
 interface LicenseConfig {
     /** API key for license verification */
     apiKey: string;
@@ -84,19 +75,6 @@ interface UsageStats {
     sessionId?: string;
 }
 /**
- * Stop usage tracking timer (for testing cleanup)
- */
-declare function stopUsageTracking(): void;
-/**
- * Track function call (internal use)
- */
-declare function trackFunctionCall(functionName: 'renderMarkdown' | 'renderMarkdownCompact'): void;
-/**
- * Check if warning should be injected (every 1000 unlicensed calls in Node.js)
- * Returns the warning HTML if needed, otherwise returns empty string
- */
-declare function getWarningIfNeeded(): string;
-/**
  * Configure global license settings
  * Note: License validation only works in Node.js environment
  */
@@ -115,14 +93,6 @@ declare function validateLicense(): Promise<LicenseValidationResult>;
  * Note: In browser environment, always returns false (license validation is Node.js only)
  */
 declare function isLicensed(): boolean;
-/**
- * Clear validation cache (useful for testing)
- */
-declare function clearValidationCache(): void;
-/**
- * Reset usage statistics (useful for testing)
- */
-declare function resetUsageStats(): void;
 
-export { UNLICENSED_WARNING_INTERVAL, clearValidationCache, configureLicense, getLicenseConfig, getWarningIfNeeded, isLicensed, renderMarkdown, renderMarkdownCompact, resetUsageStats, setUnlicensedWarningInterval, stopUsageTracking, tex2svg, trackFunctionCall, validateLicense };
+export { configureLicense, getLicenseConfig, isLicensed, renderMarkdown, renderMarkdownCompact, tex2svg, validateLicense };
 export type { LicenseConfig, LicenseValidationResult, Locale, UsageStats };

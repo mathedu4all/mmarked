@@ -1,3 +1,44 @@
+## [3.1.7](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.6...v3.1.7) (2026-08-12)
+
+
+* refactor(license)!: 公共 API 只保留配置与查询，移除可一行关掉授权执行的导出（issue #20） ([a7fd43c](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/a7fd43cf5447fb0e1be306171932d9ec1dab6258)), closes [#20](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/20) [#20](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/20)
+
+
+### Bug Fixes
+
+* restore missing demo/index.html ([02c9ef5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/02c9ef502545e2ddab84da954b736f1f1a704ba9))
+
+
+### BREAKING CHANGES
+
+* 包根不再导出 setUnlicensedWarningInterval、
+UNLICENSED_WARNING_INTERVAL、trackFunctionCall、getWarningIfNeeded、
+resetUsageStats、stopUsageTracking、clearValidationCache。
+
+`export * from './license'` 把内部机制整体抬到了公共 API 面上。检查公开发布的
+@mathcrowd/mmarked@3.1.6 产物确认这些符号确实在导出列表里，于是：
+
+    import { setUnlicensedWarningInterval } from '@mathcrowd/mmarked'
+    setUnlicensedWarningInterval(Number.MAX_SAFE_INTEGER)   // 警告永不触发
+
+一行即可关掉授权执行，stopUsageTracking() 同理关掉用量上报，**都不需要任何
+key**。也就是说偷 key 反而是更麻烦、更容易留痕的路径，直接关掉才是理性选择。
+
+保留的公共 API：configureLicense / getLicenseConfig / isLicensed /
+validateLicense，以及 LicenseConfig / LicenseValidationResult / UsageStats
+三个类型。后两个查询函数是只读的，不构成绕过入口。
+
+被移除的函数注释本就写着 "for testing/debugging"，且 license.test.ts 一直是从
+'./license' 内部导入，不依赖包根再导出——测试无需改动，15 例全绿。
+
+影响面：已确认 mathcrowd-h5 / mathedu4all-site / omath.fun / mathcrowd-rst-lib /
+landing-components 均未使用这些符号，下游升级无需改代码。
+
+这只是抬高绕过成本、让内部机制不再是公开契约，并不能"防住"——服务端库的代码在
+对方机器上跑，理论上防不住。让绕过留下痕迹的方案（许可证状态与渲染结果耦合）
+
+
+
 ## [3.1.6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.5...v3.1.6) (2026-04-29)
 
 
@@ -5,12 +46,16 @@
 
 * add agent skills for project automation ([1f0d8a0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/1f0d8a0f9e0a08e687f0c3b9f3b8bf6ab1121f9b))
 
+
+
 ## [3.1.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.4...v3.1.5) (2026-04-29)
 
 
 ### Features
 
 * add title/aria options to tex2svg for SEO and accessibility ([ec00910](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/ec00910bec13a886b90a7b24057c30a1845bc4e6))
+
+
 
 ## [3.1.4](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.3...v3.1.4) (2026-04-10)
 
@@ -27,20 +72,22 @@
 
 * add i18n locale support for built-in labels (zh/en) ([4bb0bf9](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/4bb0bf99f647ced1e6340a9c7ba672df412a0d2f))
 
+
+
 ## [3.1.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.2...v3.1.3) (2026-03-27)
-
-
-### Features
-
-* **tooltip:** 重构 tooltip 扩展，图片链接改为可选项 ([fc33c0b](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/fc33c0bb1bccfdb0948b0806f9431b89e5b9aecf))
-
-## [3.1.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.0...v3.1.1) (2026-01-22)
 
 
 ### Bug Fixes
 
 * **test:** 修复 Jest 测试无法正常退出的问题 ([922d5ec](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/922d5ecf32e710ecaa8063e8769dada613d0fee5))
 * 修复 MathJax 内存泄漏问题 ([e7ad29d](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/e7ad29df760f69d0ebe6e1f312c1812d3fbbb856))
+
+
+### Features
+
+* **tooltip:** 重构 tooltip 扩展，图片链接改为可选项 ([fc33c0b](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/fc33c0bb1bccfdb0948b0806f9431b89e5b9aecf))
+
+
 
 # [3.1.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.0.1...v3.1.0) (2025-12-26)
 
@@ -49,12 +96,16 @@
 
 * optimize performance with singleton pattern and auto license config ([8a1f46c](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/8a1f46c69a75205f9498f3674df96bbbd4905d0d))
 
+
+
 ## [3.0.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.0.0...v3.0.1) (2025-12-26)
 
 
 ### Features
 
 * **license:** add validation caching to improve performance ([220d21b](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/220d21b3937210752930c236b29731f13163190b))
+
+
 
 # [3.0.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.3...v3.0.0) (2025-12-25)
 
@@ -70,6 +121,8 @@
 
 * add Node.js-only license validation with browser exemption ([e767164](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/e767164129faedb29f32af9bd9aafa1da5c559a3))
 
+
+
 ## [2.0.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.2...v2.0.3) (2025-10-12)
 
 
@@ -78,6 +131,8 @@
 * **build:** preserve .gitignore in docs directory ([f9c1e79](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/f9c1e792c8d79311fa98c30eb6cb794cfaa870c6))
 * **ci:** remove build steps from GitHub release workflow ([d3d74c6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/d3d74c63706546c848d6a64f71dc4281cec76414))
 
+
+
 ## [2.0.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v2.0.1...v2.0.2) (2025-10-12)
 
 
@@ -85,9 +140,15 @@
 
 * fix demo missing demo.esm.js. ([5785ce0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/5785ce0270d9c2d1047e3e71bcb25ff9407352f2))
 
+
+
 ## [2.0.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.8...v2.0.1) (2025-10-04)
 
+
+
 ## [1.8.8](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.7...v1.8.8) (2025-09-10)
+
+
 
 ## [1.8.7](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.6...v1.8.7) (2025-07-23)
 
@@ -97,6 +158,8 @@
 * [#18](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/18) footnotes in table bug fixed. ([ec0e561](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/ec0e5610224b27362dcf9c7fce2751c8b332bd49))
 * eslint timeout fixed. ([8d180e6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/8d180e6061809c71d5604053b6f1a02151e8e25e))
 
+
+
 ## [1.8.6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.5...v1.8.6) (2025-03-27)
 
 
@@ -104,9 +167,15 @@
 
 * rollup config. ([806e7d5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/806e7d5e8f97d5ddb317e98ebdd0ca4817f6aa30))
 
+
+
 ## [1.8.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.4...v1.8.5) (2025-03-06)
 
+
+
 ## [1.8.4](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.3...v1.8.4) (2024-12-19)
+
+
 
 ## [1.8.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.2...v1.8.3) (2024-12-19)
 
@@ -115,12 +184,16 @@
 
 * eslint upgraded to v9. ([806c4c1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/806c4c15b02e8f18a09b8032be6c2d57e596ba0a))
 
+
+
 ## [1.8.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.1...v1.8.2) (2024-10-29)
 
 
 ### Features
 
 * use span instead of div for tooltip. ([5373666](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/5373666707603b335384e57efa7257722dc42afb))
+
+
 
 ## [1.8.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.8.0...v1.8.1) (2024-10-29)
 
@@ -134,6 +207,8 @@
 
 * tooltip trigger by click using checkbox. ([783f758](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/783f758fd61f9677ac9ba192c143aac1747f6bb7))
 
+
+
 # [1.8.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.11...v1.8.0) (2024-10-28)
 
 
@@ -142,9 +217,15 @@
 * exts reorganized & tooltip supported. ([9a2f6c6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/9a2f6c620220a25f4cbd29571e8f82e59c28662c))
 * tokenizer/renderer/rules config reorgnized. ([7aa58d3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/7aa58d38d2a93d52efe1657aeb19b22680b5346a))
 
+
+
 ## [1.7.11](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.10...v1.7.11) (2024-10-25)
 
+
+
 ## [1.7.10](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.9...v1.7.10) (2024-10-25)
+
+
 
 ## [1.7.9](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.8...v1.7.9) (2024-10-23)
 
@@ -153,12 +234,16 @@
 
 * gallery extension added. ([c578412](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/c578412cc4ffab4226bfc068165e99f1dc631219))
 
+
+
 ## [1.7.8](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.7...v1.7.8) (2024-10-22)
 
 
 ### Features
 
 * pacakge.json updated. ([356e1b0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/356e1b0b22b5307d09bc6ba977485caa835e5dd3))
+
+
 
 ## [1.7.7](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.6...v1.7.7) (2024-10-22)
 
@@ -167,6 +252,8 @@
 
 * [#10](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/10) do not show link when footnote not referenced. ([8ea8008](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/8ea80087c85f572cd9099eee227adb77143b2de9))
 
+
+
 ## [1.7.6](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.5...v1.7.6) (2024-10-22)
 
 
@@ -174,6 +261,8 @@
 
 * add caption support to table. ([aca91fa](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/aca91fabb81fee9164fbbcca80ecc0683794e93d))
 * add checkbox in list support. ([7d65c80](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/7d65c808f24a1415c0414e717de4bf240599860a))
+
+
 
 ## [1.7.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.3...v1.7.5) (2024-10-16)
 
@@ -187,12 +276,16 @@
 
 * alert icon updated. ([b674540](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/b674540f3b57fa96ef3e4827ee57bdd5cad75e45))
 
+
+
 ## [1.7.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.2...v1.7.3) (2024-09-26)
 
 
 ### Features
 
 * alert syntax added. ([b52c5be](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/b52c5be2d5a1e5c9af7a63f39a08a74ff078fad2))
+
+
 
 ## [1.7.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.1...v1.7.2) (2024-09-25)
 
@@ -201,9 +294,15 @@
 
 * classname added/updated. ([e51de90](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/e51de90064ed641a9b229c00e7695ce77df7f4e6))
 
+
+
 ## [1.7.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.7.0...v1.7.1) (2024-09-24)
 
+
+
 # [1.7.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.6.3...v1.7.0) (2024-09-24)
+
+
 
 ## [1.6.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.6.1...v1.6.3) (2024-09-24)
 
@@ -212,6 +311,8 @@
 
 * npm install command fixed. ([b0bea6d](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/b0bea6d48eafa1dcd361fc6b01ad8db84c24b2ff))
 
+
+
 ## [1.6.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.6.0...v1.6.1) (2024-09-20)
 
 
@@ -219,12 +320,16 @@
 
 * demo page links fixed. ([9b40d38](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/9b40d38a572ac1dd3c3dfdd70ed28d8072ab54c0))
 
+
+
 # [1.6.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.5.5...v1.6.0) (2024-09-20)
 
 
 ### Features
 
 * web integration supported. ([487f2cc](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/487f2cccc4489c13329ca7181408818f107b3eda))
+
+
 
 ## [1.5.5](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.5.0...v1.5.5) (2024-09-18)
 
@@ -238,7 +343,11 @@
 
 * support unnumbered theorem block. ([32cf3a0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/32cf3a0f44dfa0cf3797a16b2f7bc9104775f413))
 
+
+
 # [1.5.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.3.3...v1.5.0) (2024-09-04)
+
+
 
 ## [1.3.3](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.3.2...v1.3.3) (2024-08-14)
 
@@ -247,12 +356,16 @@
 
 * image size. [#7](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/7) ([4bf2f68](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/4bf2f680d61cf8084a2be66e5709d46509b3a1a0))
 
+
+
 ## [1.3.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.3.1...v1.3.2) (2024-08-08)
 
 
 ### Bug Fixes
 
 * add 'px' to image size. ([7aacb77](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/7aacb77512d418652e5e6b194fbb7278ce447c1d))
+
+
 
 ## [1.3.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.2.2...v1.3.1) (2024-08-06)
 
@@ -263,7 +376,11 @@
 * project reorgnized. ([2d4b437](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/2d4b4374e9451e0236e8d609c26f19ebcdf09872))
 * rollup livereload / highlight added. ([4b893bf](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/4b893bf535165a61821d89c0e341d5820473710d))
 
+
+
 ## [1.2.2](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.2.1...v1.2.2) (2024-08-01)
+
+
 
 ## [1.2.1](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v1.2.0...v1.2.1) (2024-08-01)
 
@@ -271,6 +388,8 @@
 ### Bug Fixes
 
 * ts error https://github.com/markedjs/marked/issues/3101 ([1991650](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/1991650e64c513adb97bb4d31b12f3d0ae10a352))
+
+
 
 # [1.2.0](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/3d84e4de2829de5ae4f03efc51eadc9b279eb775...v1.2.0) (2024-08-01)
 
@@ -294,3 +413,6 @@
 * trigger updating dependencies. ([a0d167b](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/a0d167b6de42fdfd5f3eb712d24bf926af3ce650))
 * upgrade marked.js to v13 ([af45a2f](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/af45a2f90f207069df23f0da65ff7dab31155e24))
 * use section instead of div. ([3d84e4d](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/3d84e4de2829de5ae4f03efc51eadc9b279eb775))
+
+
+
