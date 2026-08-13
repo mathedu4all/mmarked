@@ -53,6 +53,15 @@ interface LicenseValidationResult {
     message?: string;
     expiresAt?: Date;
     tier?: 'free' | 'basic' | 'pro' | 'enterprise';
+    /**
+     * True when no authoritative answer could be obtained: network error, 5xx,
+     * 429 (rate limited), timeout, or fetch unavailable.
+     *
+     * In that case `valid: false` means "unknown", NOT "unlicensed" — callers
+     * must not treat it as a negative verdict, and the result is never cached.
+     * Only the server explicitly answering `{ valid: false }` is authoritative.
+     */
+    indeterminate?: boolean;
 }
 interface UsageStats {
     /** Total number of function calls */

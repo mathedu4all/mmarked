@@ -1,3 +1,12 @@
+## [3.1.8](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.7...v3.1.8) (2026-08-13)
+
+
+### Bug Fixes
+
+* **license:** 网络错误不再被当成「密钥无效」缓存，付费客户不会因抖动看到非商业警告（issue [#21](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/21)） ([f1b0181](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/commits/f1b0181f205aa1dccf4739ff40751630c70b18ea)), closes [wxmp-api#7](https://cloud.mathcrowd.cn:2444/wxmp-api/issues/7) [wxmp-api#8](https://cloud.mathcrowd.cn:2444/wxmp-api/issues/8) [#9](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/issues/9)
+
+
+
 ## [3.1.7](https://cloud.mathcrowd.cn:2444/agile/frontend/mathcrowd-marked-lib/compare/v3.1.6...v3.1.7) (2026-08-12)
 
 
