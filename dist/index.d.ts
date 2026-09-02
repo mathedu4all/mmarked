@@ -26,6 +26,7 @@ type Locale = 'zh' | 'en';
  */
 declare const renderMarkdown: (text: string, options?: {
     locale?: Locale;
+    footnoteOffset?: number;
 }) => {
     parsed: string;
     lexed: Tokens.Generic[];
